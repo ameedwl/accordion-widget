@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Accordion</title>
+  <title>Grey Accordion</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background-color: #28a745; }
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
     .accordion {
       display: flex;
       width: 100%;
       height: 400px;
       overflow: hidden;
+      border-radius: 20px;
+      background-color: #f0f0f0; /* container background */
     }
     .panel {
       flex: 1;
       position: relative;
-      /* Use solid green shades */
-      background-color: #2ecc71;
+      background-color: #ecf0f1;
       transition: flex 0.5s ease;
       cursor: pointer;
-      color: white;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
+      color: #2c3e50;
+      overflow: hidden;
     }
-    .panel:nth-child(2) { background-color: #27ae60; }
-    .panel:nth-child(3) { background-color: #16a085; }
+    .panel:nth-child(2) { background-color: #dcdde1; }
+    .panel:nth-child(3) { background-color: #bdc3c7; }
 
+    .panel .content {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      transition: bottom 0.5s ease, transform 0.5s ease;
+      transform: translateY(0);
+      text-align: left;
+    }
     .panel .title {
       font-size: 1.2rem;
       font-weight: bold;
@@ -41,6 +49,11 @@
     .panel.active {
       flex: 3;
     }
+    .panel.active .content {
+      bottom: 50%;
+      transform: translateY(50%);
+      text-align: center;
+    }
     .panel.active .desc {
       display: block;
     }
@@ -51,23 +64,23 @@
 <div class="accordion">
   <div class="panel active">
     <div class="content">
-      <div class="title">Ultra‑Compact & Powerful</div>
+      <div class="title">Ultra-Compact & Powerful</div>
       <div class="desc">
-        Generates 10–5000 N of force.<br>
+        Generates 10–5000 N of force.<br>
         High precision and repeatability.<br>
         Fast response and exceptional dynamics.<br>
-        Actuator length: as small as 100 microns.<br>
-        Total unit weight: a few milligrams (1 oz).<br>
+        Actuator length: as small as 100 microns.<br>
+        Total unit weight: a few milligrams (1 oz).<br>
         Scalable modules for higher force or longer reach.<br>
-        Suitable for precision‑critical, space‑constrained systems.
+        Suitable for precision-critical, space-constrained systems.
       </div>
     </div>
   </div>
   <div class="panel">
     <div class="content">
-      <div class="title">High‑Speed Response</div>
+      <div class="title">High-Speed Response</div>
       <div class="desc">
-        Sub‑millisecond actuation time.<br>
+        Sub-millisecond actuation time.<br>
         Ideal for dynamic applications.<br>
         Minimal latency and high repeat rate.
       </div>
@@ -86,12 +99,9 @@
 </div>
 
 <script>
-  // Grab all panels
   document.querySelectorAll('.panel').forEach(panel => {
     panel.addEventListener('click', () => {
-      // Remove .active from others
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      // Add .active to clicked
       panel.classList.add('active');
     });
   });
