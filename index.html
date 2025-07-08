@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Accordion</title>
+  <title>Green Accordion</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; }
+    body { font-family: Arial, sans-serif; background-color: #28a745; }
     .accordion {
       display: flex;
       width: 100%;
@@ -16,18 +16,18 @@
     .panel {
       flex: 1;
       position: relative;
-      background-size: cover;
-      background-position: center;
+      /* Use solid green shades */
+      background-color: #2ecc71;
       transition: flex 0.5s ease;
       cursor: pointer;
       color: white;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
     }
-    .panel .content {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-    }
+    .panel:nth-child(2) { background-color: #27ae60; }
+    .panel:nth-child(3) { background-color: #16a085; }
+
     .panel .title {
       font-size: 1.2rem;
       font-weight: bold;
@@ -49,7 +49,7 @@
 <body>
 
 <div class="accordion">
-  <div class="panel active" style="background-image: url('https://via.placeholder.com/800x400/8e44ad/ffffff');">
+  <div class="panel active">
     <div class="content">
       <div class="title">Ultra‑Compact & Powerful</div>
       <div class="desc">
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <div class="panel" style="background-image: url('https://via.placeholder.com/800x400/2c3e50/ffffff');">
+  <div class="panel">
     <div class="content">
       <div class="title">High‑Speed Response</div>
       <div class="desc">
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="panel" style="background-image: url('https://via.placeholder.com/800x400/16a085/ffffff');">
+  <div class="panel">
     <div class="content">
       <div class="title">Modular & Customizable</div>
       <div class="desc">
@@ -87,11 +87,10 @@
 
 <script>
   // Grab all panels
-  const panels = document.querySelectorAll('.panel');
-  panels.forEach(panel => {
+  document.querySelectorAll('.panel').forEach(panel => {
     panel.addEventListener('click', () => {
       // Remove .active from others
-      panels.forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       // Add .active to clicked
       panel.classList.add('active');
     });
@@ -100,4 +99,3 @@
 
 </body>
 </html>
-
