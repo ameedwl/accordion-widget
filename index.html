@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grey Accordion</title>
+  <title>Grey Accordion with Left-Aligned Bullets</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
@@ -13,7 +13,7 @@
       height: 400px;
       overflow: hidden;
       border-radius: 20px;
-      background-color: #f0f0f0; /* container background */
+      background-color: #f0f0f0;
     }
     .panel {
       flex: 1;
@@ -27,35 +27,46 @@
     .panel:nth-child(2) { background-color: #dcdde1; }
     .panel:nth-child(3) { background-color: #bdc3c7; }
 
+    /* Default (collapsed) content at bottom-left */
     .panel .content {
       position: absolute;
       left: 20px;
       right: 20px;
       bottom: 20px;
-      transition: bottom 0.5s ease, transform 0.5s ease;
-      transform: translateY(0);
+      transition: bottom 0.5s ease, top 0.5s ease, transform 0.5s ease;
       text-align: left;
     }
     .panel .title {
       font-size: 1.2rem;
       font-weight: bold;
+      margin-bottom: 10px;
     }
     .panel .desc {
-      margin-top: 10px;
-      font-size: 1rem;
-      line-height: 1.4;
       display: none;
+      list-style: disc outside;
+      padding-left: 100px;
+      margin-top: 5px;
+      text-align: left;
+    }
+    .panel .desc li {
+      margin-bottom: 5px;
     }
     .panel.active {
       flex: 3;
     }
+    /* Active state: center title but keep bullets left-aligned */
     .panel.active .content {
-      bottom: 50%;
-      transform: translateY(50%);
+      top: 50%;
+      bottom: auto;
+      transform: translateY(-50%);
       text-align: center;
     }
     .panel.active .desc {
       display: block;
+      /* left-align bullets under text */
+      text-align: left;
+      max-width: 70%;
+      margin: 10px auto 0;
     }
   </style>
 </head>
@@ -65,42 +76,42 @@
   <div class="panel active">
     <div class="content">
       <div class="title">Ultra-Compact & Powerful</div>
-      <div class="desc">
-        Generates 10–5000 N of force.<br>
-        High precision and repeatability.<br>
-        Fast response and exceptional dynamics.<br>
-        Actuator length: as small as 100 microns.<br>
-        Total unit weight: a few milligrams (1 oz).<br>
-        Scalable modules for higher force or longer reach.<br>
-        Suitable for precision-critical, space-constrained systems.
-      </div>
+      <ul class="desc">
+        <li>Generates 10–5000 N of force.</li>
+        <li>High precision and repeatability.</li>
+        <li>Fast response and exceptional dynamics.</li>
+        <li>Actuator length: as small as 100 microns.</li>
+        <li>Total unit weight: a few milligrams (1 oz).</li>
+        <li>Scalable modules for higher force or longer reach.</li>
+        <li>Suitable for precision-critical, space-constrained systems.</li>
+      </ul>
     </div>
   </div>
   <div class="panel">
     <div class="content">
-      <div class="title">No Lubrication, low Wear, no Noise</div>
-      <div class="desc">
-        ​No oil, grease required.<br>
-       Fully non-magnetic. Sensors or MRI safe.<br>
-        Operates silently.<br>
-        Frictionless design means minimal mechanical degradation over time.<br>
-        Durable over billions of cycles without service.<br>
-        Ideal for sterile or enclosed systems.<br>
-        Low energy draw. 
-      </div>
+      <div class="title">No Lubrication, Low Wear, No Noise</div>
+      <ul class="desc">
+        <li>No oil or grease required.</li>
+        <li>Fully non-magnetic. Sensors or MRI safe.</li>
+        <li>Operates silently.</li>
+        <li>Frictionless design means minimal mechanical degradation over time.</li>
+        <li>Durable over billions of cycles without service.</li>
+        <li>Ideal for sterile or enclosed systems.</li>
+        <li>Low energy draw.</li>
+      </ul>
     </div>
   </div>
   <div class="panel">
     <div class="content">
       <div class="title">Extreme Environment Ready</div>
-      <div class="desc">
-        Biocompatible.<br>
-        Operates from –150°C to +150°C.<br>
-        Fully functional in vacuum, space, and underwater settings.<br>
-        Resistant to radiation, ideal for space and nuclear use.<br>
-        Dustproof and pressure-tolerant.<br>
-        Proven to operate in high-vibration conditions.
-      </div>
+      <ul class="desc">
+        <li>Biocompatible.</li>
+        <li>Operates from –150°C to +150°C.</li>
+        <li>Fully functional in vacuum, space, and underwater settings.</li>
+        <li>Resistant to radiation, ideal for space and nuclear use.</li>
+        <li>Dustproof and pressure-tolerant.</li>
+        <li>Proven to operate in high-vibration conditions.</li>
+      </ul>
     </div>
   </div>
 </div>
