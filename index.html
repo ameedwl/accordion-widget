@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grey Accordion with Left-Aligned Bullets</title>
+  <title>Responsive Grey Accordion</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+
     .accordion {
       display: flex;
       width: 100%;
@@ -15,6 +16,7 @@
       border-radius: 20px;
       background-color: #f0f0f0;
     }
+
     .panel {
       flex: 1;
       position: relative;
@@ -27,7 +29,6 @@
     .panel:nth-child(2) { background-color: #dcdde1; }
     .panel:nth-child(3) { background-color: #bdc3c7; }
 
-    /* Default (collapsed) content at bottom-left */
     .panel .content {
       position: absolute;
       left: 20px;
@@ -41,20 +42,25 @@
       font-weight: bold;
       margin-bottom: 10px;
     }
+
+    /* Default bullet padding for small & medium screens */
     .panel .desc {
       display: none;
       list-style: disc outside;
-      padding-left: 100px;
+      padding-left: 25px;
       margin-top: 5px;
       text-align: left;
     }
-    .panel .desc li {
-      margin-bottom: 5px;
+    .panel .desc li { margin-bottom: 5px; }
+
+    /* Increase padding for larger screens */
+    @media (min-width: 1024px) {
+      .panel .desc {
+        padding-left: 100px;
+      }
     }
-    .panel.active {
-      flex: 3;
-    }
-    /* Active state: center title but keep bullets left-aligned */
+
+    .panel.active { flex: 3; }
     .panel.active .content {
       top: 50%;
       bottom: auto;
@@ -63,10 +69,40 @@
     }
     .panel.active .desc {
       display: block;
-      /* left-align bullets under text */
       text-align: left;
       max-width: 70%;
       margin: 10px auto 0;
+    }
+
+    /* Responsive for phones */
+    @media (max-width: 600px) {
+      .accordion {
+        flex-direction: column;
+        height: auto;
+      }
+      .panel {
+        flex: none;
+        min-height: 80px;
+        transition: min-height 0.5s ease;
+      }
+      .panel.active { min-height: 250px; }
+      .panel .content {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        padding: 15px;
+      }
+      .panel.active .content {
+        text-align: left;
+        transform: none;
+        margin-top: 10px;
+      }
+      .panel .desc {
+        max-width: 100%;
+        margin: 5px 0 0 0;
+        padding-left: 25px; /* ensure consistent small padding */
+      }
     }
   </style>
 </head>
